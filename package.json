@@ -12,6 +12,27 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "RR Vs Code",
+      "properties": {
+        "rr.shellPath": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "Specifies the path to the users shell, can be obtained via the $SHELL env variable."
+        },
+        "rr.shellProfile": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "Specifies the path to the users shell profile, e.g. `~/.zshrc. Needed to ensure environment is loaded properly for commands."
+        }
+      }
+    },
     "commands": [
       {
         "command": "rr-vs-code-extension.helloWorld",
@@ -20,8 +41,20 @@
       {
         "command": "rr-vs-code-extension.showConfiguredShell",
         "title": "RR: Configured shell"
+      },
+      {
+        "command": "rr-vs-code-extension.grepForSymbol",
+        "title": "RR: Grep for symbol"
       }
-    ]
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "rrGrepView",
+          "name": "Git grep finds"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
